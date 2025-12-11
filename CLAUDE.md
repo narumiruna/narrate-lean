@@ -11,10 +11,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Package Management
 - **Install dependencies**: `uv sync` (uv is the package manager)
 - **Run CLI**: `uv run narratelean --help` (calls `narratelean.cli:app`)
-- **Narrate Lean file**: `uv run narratelean narrate sample.lean -o output.md`
-- **With Lean explanations**: `uv run narratelean narrate sample.lean --explain-lean -o output.md`
-- **Skip definitions**: `uv run narratelean narrate sample.lean --no-definitions -o output.md`
-- **Skip proofs**: `uv run narratelean narrate sample.lean --no-proofs -o output.md`
+- **Narrate Lean file**: `uv run narratelean narrate example.lean -o output.md`
+- **With Lean explanations**: `uv run narratelean narrate example.lean --explain-lean -o output.md`
+- **Skip definitions**: `uv run narratelean narrate example.lean --no-definitions -o output.md`
+- **Skip proofs**: `uv run narratelean narrate example.lean --no-proofs -o output.md`
 - **Single test**: `uv run pytest -v -s tests/test_hello.py`
 
 ### Quality Checks
@@ -52,7 +52,8 @@ Project uses LiteLLM proxy for LLM API access. Configuration in `.env`:
 - Alternative: `OPENAI_API_KEY` (can use direct OpenAI API instead of LiteLLM)
 
 ### Lean 4 Integration
-- **Sample proof**: [`sample.lean`](sample.lean) - Demonstrates sequence squeeze theorem using Mathlib
+- **Example proof**: [`example.lean`](example.lean) - Demonstrates sequence squeeze theorem using Mathlib
+- **Example output**: [`example_output.md`](example_output.md) - Generated human-readable proof in Markdown
 - **Parser capabilities**: Extracts imports, definitions, theorems, hypotheses, and proof steps
 - **Narration approach**: Uses LLM to convert formal Lean proofs into natural language with LaTeX notation
 

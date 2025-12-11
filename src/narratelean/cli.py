@@ -30,7 +30,7 @@ def narrate(  # noqa: B008
 
     Example usage:
         narratelean narrate input.lean -o output.md
-        narratelean narrate sample.lean  # Output to stdout
+        narratelean narrate example.lean  # Output to stdout
     """
 
     load_dotenv(find_dotenv(), override=True)
