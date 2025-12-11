@@ -129,6 +129,8 @@ The narrator supports two distinct modes controlled by the `--explain-lean` flag
 - **Ignored**:
   - `__init__.py` files allow F401 (unused imports), F403 (wildcard imports)
   - `cli.py` allows B008 (function calls in argument defaults - Typer pattern)
+- **Type checking**: Uses `ty` (pyright wrapper)
+  - Known issue: loguru's `configure()` requires `# type: ignore[arg-type]` due to strict HandlerConfig typing
 
 ## Version Management
 
