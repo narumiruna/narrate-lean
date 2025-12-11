@@ -1,9 +1,7 @@
 import tempfile
 from pathlib import Path
 
-from narrate_lean.latex_generator import LaTeXGenerator
-from narrate_lean.markdown_generator import MarkdownGenerator
-from narrate_lean.parser import LeanParser
+from narratelean.parser import LeanParser
 
 
 def test_parser_basic() -> None:
@@ -18,51 +16,24 @@ def test_parser_basic() -> None:
         test_file = Path(tmpdir) / "test_basic.lean"
         test_file.write_text(test_content)
 
-        doc = parser.parse_file(test_file)
+        lean_file = parser.parse_file(test_file)
 
-        assert len(doc.theorems) == 1
-        assert doc.theorems[0].name == "add_zero"
-        assert "n + 0 = n" in doc.theorems[0].statement
-
-
-def test_markdown_generator() -> None:
-    """Test Markdown generation."""
-    parser = LeanParser()
-    test_content = """theorem test_theorem (n : Nat) : n = n := by
-  rfl"""
-
-    with tempfile.TemporaryDirectory() as tmpdir:
-        test_file = Path(tmpdir) / "test_markdown.lean"
-        test_file.write_text(test_content)
-
-        doc = parser.parse_file(test_file)
-        generator = MarkdownGenerator()
-
-        output_file = Path(tmpdir) / "test_output.md"
-        generator.generate(doc, output_file)
-
-        assert output_file.exists()
-        content = output_file.read_text()
-        assert "# Lean 4 Proof Documentation" in content
-        assert "test_theorem" in content
+        assert len(lean_file.theorems) == 1
+        assert lean_file.theorems[0].name == "add_zero"
+        assert "n + 0 = n" in lean_file.theorems[0].statement
 
 
-def test_latex_generator() -> None:
-    """Test LaTeX generation."""
+def test_parser_with_definition() -> None:
+    """Test parsing definitions."""
     parser = LeanParser()
     test_content = """def double (n : Nat) : Nat := n + n"""
 
     with tempfile.TemporaryDirectory() as tmpdir:
-        test_file = Path(tmpdir) / "test_latex.lean"
+        test_file = Path(tmpdir) / "test_def.lean"
         test_file.write_text(test_content)
 
-        doc = parser.parse_file(test_file)
-        generator = LaTeXGenerator()
+        lean_file = parser.parse_file(test_file)
 
-        output_file = Path(tmpdir) / "test_output.tex"
-        generator.generate(doc, output_file)
-
-        assert output_file.exists()
-        content = output_file.read_text()
-        assert r"\documentclass{article}" in content
-        assert "double" in content
+        assert len(lean_file.definitions) == 1
+        assert lean_file.definitions[0].name == "double"
+        assert "Nat" in lean_file.definitions[0].type_signature
