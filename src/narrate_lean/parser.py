@@ -39,13 +39,7 @@ class LeanParser:
 
     def __init__(self) -> None:
         """Initialize the parser."""
-        # Regex patterns for matching Lean constructs
-        self.theorem_pattern = re.compile(
-            r"theorem\s+(\w+)\s*([^:]*?):\s*([^:=]+?)\s*:=\s*(.*?)(?=\n(?:theorem|def|end|$))", re.DOTALL | re.MULTILINE
-        )
-        self.def_pattern = re.compile(
-            r"def\s+(\w+)\s*([^:]*?):\s*([^:=]+?)\s*:=\s*(.*?)(?=\n(?:theorem|def|end|$))", re.DOTALL | re.MULTILINE
-        )
+        pass
 
     def parse_file(self, file_path: Path) -> LeanDocument:
         """Parse a Lean 4 file and extract theorems and definitions.
