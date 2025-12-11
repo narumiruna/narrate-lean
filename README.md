@@ -48,7 +48,7 @@ narratelean narrate input.lean -o output.md
 Output to stdout:
 
 ```bash
-narratelean narrate sample.lean
+narratelean narrate example.lean
 ```
 
 ### Options
@@ -58,21 +58,34 @@ narratelean narrate sample.lean
 - `--no-proofs`: Skip detailed proof narration (only include theorem statements)
 - `--explain-lean`: Include explanations of Lean tactics and syntax in the proof (default: pure math only)
 
-### Example
+### Examples
 
 ```bash
-# Narrate the sample proof (pure math, no Lean explanations)
-uv run narratelean narrate sample.lean -o sample_narrated.md
+# Narrate the example proof (pure math, no Lean explanations)
+uv run narratelean narrate example.lean -o example_output.md
 
 # Include Lean tactics explanations
-uv run narratelean narrate sample.lean --explain-lean -o sample_with_lean.md
+uv run narratelean narrate example.lean --explain-lean -o example_with_lean.md
 
 # Skip definitions, only narrate theorems
-uv run narratelean narrate sample.lean --no-definitions -o output.md
+uv run narratelean narrate example.lean --no-definitions -o output.md
 
 # Just theorem statements, no detailed proofs
-uv run narratelean narrate sample.lean --no-proofs -o statements_only.md
+uv run narratelean narrate example.lean --no-proofs -o statements_only.md
 ```
+
+## Example Files
+
+This repository includes a complete example demonstrating the tool's capabilities:
+
+- **[example.lean](example.lean)** - A Lean 4 proof of the Sequence Squeeze Theorem using Mathlib
+- **[example_output.md](example_output.md)** - The generated human-readable mathematical proof in Markdown format
+
+The example showcases:
+- Custom definition (`seq_converges_to`) with natural language explanation
+- Formal theorem statement with hypotheses and conclusion
+- Step-by-step proof narrative in mathematical paper style
+- Proper LaTeX notation compatible with KaTeX rendering
 
 ## Development
 

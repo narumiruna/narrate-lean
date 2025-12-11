@@ -1,6 +1,6 @@
-# Narrated Lean Proof: sample.lean
+# Narrated Lean Proof: example.lean
 
-*This document is a human-readable narration of the Lean 4 proof file `sample.lean`.*
+*This document is a human-readable narration of the Lean 4 proof file `example.lean`.*
 
 ---
 
